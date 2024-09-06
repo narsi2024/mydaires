@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xmlns:context="http://www.springframework.org/schema/context"
+ xmlns:p="http://www.springframework.org/schema/p"
+xmlns:tx="http://www.springframework.org/schema/tx"
+xmlns:mvc="http://www.springframework.org/schema/mvc"
+ xsi:schemaLocation="http://www.springframework.org/schema/beans
+8 http://www.springframework.org/schema/beans/spring-beans.xsd
+9 http://www.springframework.org/schema/context
+10 http://www.springframework.org/schema/context/spring-context.xsd
+11 http://www.springframework.org/schema/tx
+12 http://www.springframework.org/schema/tx/spring-tx.xsd
+13 http://www.springframework.org/schema/mvc
+14 http://www.springframework.org/schema/mvc/spring-mvc.xsd">
+
+ <context:component-scan base-package="com.org.jsp.mydairy"/>
+<mvc:annotation-driven/>
+<tx:annotation-driven/>
+<mvc:resources location="/WEB-INF/resourcess/" mapping="/resourcess/**"/>
+<bean name="viewResolver"
+class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+<property name="prefix">
+<value>/WEB-INF/views/</value>
+</property>
+
+ <property name="suffix">
+<value>.jsp</value>
+</property>
+</bean>
+
+<bean name="dataSource"
+class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+
+ <property name="driverClassName" value="com.mysql.jdbc.Driver"/>
+<property name="url" value="jdbc:mysql://localhost:3306/finalspring"/>
+<property name="username" value="root"/>
+36 <property name="password" value="12345"/>
+37 </bean>
+38
+39
+40 <bean name="sessionFactory"
+class="org.springframework.orm.hibernate5.LocalSessionFactoryBean">
+41 <property name="dataSource">
+42 <ref bean="dataSource"/>
+43 </property>
+44
+45 <property name="hibernateProperties">
+46 <props>
+47 <prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>
+48 <prop key="hibernate.show_sql">true</prop>
+49 </props>
+50 </property>
+51
+52 <property name="annotatedClasses">
+53 <list>
+54 <value>com.org.jsp.mydairy.entities.User</value>
+55 <value>com.org.jsp.mydairy.entities.Entry</value>
+56 </list>
+57 </property>
+58
+
+59 </bean>
+60
+61 <bean name="hibernateTemplate"
+class="org.springframework.orm.hibernate5.HibernateTemplate">
+62 <property name="sessionFactory">
+63 <ref bean="sessionFactory"/>
+64 </property>
+65 </bean>
+66
+67 <bean name="transactionManager"
+class="org.springframework.orm.hibernate5.HibernateTransactionManager">
+68 <property name="sessionFactory">
+69 <ref bean="sessionFactory"/>
+70 </property>
+71 </bean>
+72 </beans>

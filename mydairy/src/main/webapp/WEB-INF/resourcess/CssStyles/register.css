@@ -1,0 +1,35 @@
+@charset "ISO-8859-1";
+*{
+	padding:0;
+	margin:0;
+ }
+ .mainbar
+ {
+ 	width:100;
+ 	height:109vh;
+ 
+ 
+ }
+ .loginform
+ {
+ width: 450px;
+ height: 300px;
+ background-color: pink;
+border-radius: 25px;
+ 
+ 
+ 
+ }
+ .tble
+ {
+ width:35px;
+ height:46px;
+ margin-left: 150px;
+ 
+ }
+ .loginform
+ {
+ margin-top: 300px;
+ margin-left: 300px;
+ opacity: 70%;
+ }
